@@ -220,6 +220,30 @@ cat > /etc/ipsec.d/passwd <<EOF
 $VPN_USER:$VPN_PASSWORD_ENC:xauth-psk
 EOF
 
+# Create PPTP config
+cat >/etc/pptpd.conf <<END
+option /etc/ppp/options.pptpd
+logwtmp
+localip 192.168.41.1
+remoteip 192.168.41.10-100
+END
+cat >/etc/ppp/options.pptpd <<END
+name pptpd
+refuse-pap
+refuse-chap
+refuse-mschap
+require-mschap-v2
+require-mppe-128
+ms-dns 8.8.8.8
+ms-dns 8.8.4.4
+proxyarp
+lock
+nobsdcomp 
+novj
+novjccomp
+nologfd
+END
+
 bigecho "Updating IPTables rules..."
 service fail2ban stop >/dev/null 2>&1
 iptables -t nat -I POSTROUTING -s 192.168.43.0/24 -o $NET_IFACE -j MASQUERADE
@@ -238,6 +262,7 @@ fi
 bigecho "Enabling services on boot..."
 systemctl enable xl2tpd
 systemctl enable ipsec
+systemctl enable pptpd
 
 for svc in fail2ban ipsec xl2tpd; do
   update-rc.d "$svc" enable >/dev/null 2>&1
