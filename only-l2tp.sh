@@ -277,8 +277,8 @@ mkdir -p /run/pluto
 service fail2ban restart 2>/dev/null
 service ipsec restart 2>/dev/null
 service xl2tpd restart 2>/dev/null
-wget -O /usr/bin/add-l2tp https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/add-l2tp.sh && chmod +x /usr/bin/add-l2tp
-wget -O /usr/bin/del-l2tp https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/del-l2tp.sh && chmod +x /usr/bin/del-l2tp
-wget -O /usr/bin/renew-l2tp https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/renew-l2tp.sh && chmod +x /usr/bin/renew-l2tp
+#wget -O /usr/bin/add-l2tp https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/add-l2tp.sh && chmod +x /usr/bin/add-l2tp
+#wget -O /usr/bin/del-l2tp https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/del-l2tp.sh && chmod +x /usr/bin/del-l2tp
+#wget -O /usr/bin/renew-l2tp https://raw.githubusercontent.com/osjekwknwjsk/awikwok/main/renew-l2tp.sh && chmod +x /usr/bin/renew-l2tp
 touch /var/lib/premium-script/data-user-l2tp
 rm -f /root/ipsec.sh
